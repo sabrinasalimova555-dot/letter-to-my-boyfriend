@@ -1464,68 +1464,34 @@ Sen bilan o‘tgan har bir soniya men uchun bebaho xazina. Qayerda bo‘lmaylik,
     });
   </script>
 
-<section id="love-counter">
-  <h2>Bizning hikoyamiz boshlanganiga ❤️</h2>
-  <p class="start-date">25.08.2026</p>
-
-  <div class="counter">
-    <div><strong id="days">0</strong><span>Kun</span></div>
-    <div><strong id="hours">0</strong><span>Soat</span></div>
-    <div><strong id="minutes">0</strong><span>Minut</span></div>
-    <div><strong id="seconds">0</strong><span>Soniya</span></div>
-  </div>
-  <p>Har bir soniya — bizning hikoyamizdan bir parcha ♡</p>
-</section>
-
-<style>
-#love-counter {
-  text-align: center;
-  padding: 35px 12px;
-  color: #9d4669;
-  font-family: Georgia, serif;
-}
-#love-counter h2 { font-size: 25px; }
-#love-counter .start-date { letter-spacing: 3px; }
-#love-counter .counter {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-#love-counter .counter div {
-  background: #fff0f5;
-  border-radius: 15px;
-  padding: 15px 12px;
-  min-width: 65px;
-}
-#love-counter strong {
-  display: block;
-  font-size: 27px;
-}
-#love-counter span { font-size: 12px; }
-</style>
 
 <script>
-const startDate = new Date(2025, 8, 25, 0, 0, 0);
+(function () {
+  const loveStartDate = new Date(2026, 7, 25, 0, 0, 0);
 
-function updateCounter() {
-  const now = new Date();
-  let diff = Math.max(0, now - startDate);
+  function updateLoveCounter() {
+    const now = new Date();
+    const difference = Math.max(0, now - loveStartDate);
 
-  const days = Math.floor(diff / 86400000);
-  const hours = Math.floor(diff / 3600000) % 24;
-  const minutes = Math.floor(diff / 60000) % 60;
-  const seconds = Math.floor(diff / 1000) % 60;
+    const values = {
+      days: Math.floor(difference / 86400000),
+      hours: Math.floor(difference / 3600000) % 24,
+      minutes: Math.floor(difference / 60000) % 60,
+      seconds: Math.floor(difference / 1000) % 60
+    };
 
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
-}
+    Object.keys(values).forEach(function (key) {
+      const element = document.getElementById(key);
+      if (element) {
+        element.textContent = values[key];
+      }
+    });
+  }
 
-updateCounter();
-setInterval(updateCounter, 1000);
-</script>s
+  updateLoveCounter();
+  setInterval(updateLoveCounter, 1000);
+})();
+</script>
 
 </body>
 </html>
